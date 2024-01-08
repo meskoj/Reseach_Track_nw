@@ -6,7 +6,8 @@ This is the program for the second assignment of the course Research Track 1 at 
 The environment used in this project is a 2D simulation in Gazebo. The simulated environment features walls and objects, and within it, a robot is programmed to navigate. In addition to Gazebo, also Rviz was used; this last tool is used for ROS visualization, allowing the user to simulate the model and obtaining the robot sensor information. The figure below shows the initial configuration of the robot and the environment in Gazebo.
 
 <p align="center">
-    <img src="https://github.com/meskoj/ResearchTrack1_second_assignment/assets/145445406/879a67b4-d1a1-4408-8661-4c27952d2e76" alt="Environment initial configuration">
+    <img src= <img width="379" alt="gazebo_robot" src="https://github.com/meskoj/ReseachTrack1_Second_Assignment/assets/145445406/aa841836-3a36-428a-8458-780b13298067">
+alt="Environment initial configuration">
 </p>
 
 The objective is for the robot to reach a user-specified target point. The environment and the algorithm governing the robot's movements have already been implemented and can be referenced from the existing project [documentation](https://github.com/CarmineD8/assignment_2_2023).
