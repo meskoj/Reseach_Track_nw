@@ -111,12 +111,12 @@ generate_messages(
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
- INCLUDE_DIRS include
+## catkin_package(
+# INCLUDE_DIRS include
 #  LIBRARIES assignment_2_2023
 #  CATKIN_DEPENDS actionlib actionlib_msgs geometry_msgs nav_msgs roscpp rospy sensor_msgs std_msgs std_srvs tf
 #  DEPENDS system_lib
-)
+#)
 
 ###########
 ## Build ##
