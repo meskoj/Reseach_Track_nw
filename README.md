@@ -13,8 +13,8 @@ The objective is for the robot to reach a user-specified target point. The envir
 
 ## How to run the program
 Before starting is necessary to install ROS, to do so follow the instruction on [ROS wiki](https://wiki.ros.org/ROS/Installation) (for the simulation was used the Noetic version).
-Then, is necessary to setup the workspace and create a package called _assignment_2_2023_.
-In order to run the script, clone the folder inside the package and start _roscore_ using:
+Then, it is necessary to setup the workspace and create a package called _assignment_2_2023_.
+In order to run the script, clone the folder inside the package (ensure not to include the Git project folder within the package) and start the roscore by using the following command:
 ```bash
 $ roscore
 ```
@@ -22,6 +22,7 @@ Finally, to start the simulation is possible to use the following command:
 ```bash
 $ roslaunch assignment_2_2023 simulation.launch
 ```
+(If encountering an error with the command, consider closing the terminal and reopening it.)
 Following this step, Gazebo and Rviz are expected to render the simulation. Furthermore, each node responsible for implementing the motion algorithm and the server is initiated.
 
 ## Code structure and functionality
