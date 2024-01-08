@@ -22,7 +22,7 @@ Finally, to start the simulation is possible to use the following command:
 ```bash
 $ roslaunch assignment_2_2023 simulation.launch
 ```
-(If encountering an error with the command, consider closing the terminal and reopening it.)
+(If encountering an error with the command, consider closing the terminal and reopening it).
 Following this step, Gazebo and Rviz are expected to render the simulation. Furthermore, each node responsible for implementing the motion algorithm and the server is initiated.
 
 ## Code structure and functionality
@@ -39,12 +39,12 @@ The algorithm iterates until the robot successfully reaches its goal.
 ### Action client and interface
 The whole program is structured in 3 nodes:
 <ol>
-  <li> Cent: this one implements an Action client using the ActionLib library from ROS. It is used to manage the interaction between the server and the use and to send the goal to the robot. The first part implements an interface to interact with the user and decide which action to perform. The possible actions are: set the target coordinates, cancel the actual target, or exit the program. The script is also responsible to retrieve the information about the actual position and velocity of the robot from the '/odom' topic. Then, it publishes them on the topic '/actual_info', making them accessible for other nodes within the system. Finally, it implements a service to provide the last coordinates set for the target.</li>
+  <li> Client: this one implements an Action client using the ActionLib library from ROS. It is used to manage the interaction between the server and the user and to send the goal to the robot. The first part implements an interface to interact with the user and decide which action to perform. The possible actions are: set the target coordinates, cancel the actual target, or exit the program. The script is also responsible to retrieve the information about the actual position and velocity of the robot from the '/odom' topic. Then, it publishes them on the topic '/actual_info', making them accessible for other nodes within the system. Finally, it implements a service to provide the last coordinates set for the target.</li>
   <li> Node B: this script serves as a service client. When executed, it retrieves the most recent coordinates for the target from the server implemented in the Action client. Subsequently, it displays these coordinates on the screen. </li>
-  <li>Node C: it implements a service server to relay information about the robot's distance from the target and its average velocity. The script collects real-time data on the robot's position and velocities through the '\robotInfo' topic, where messages are published by the client. Additionally, it retrieves target coordinates using the same service employed in Node B. To formulate its service response, the script computes the distance and average speed. Notably, the speed calculation incorporates an averaging window, the size of which is determined by a server parameter, set from the launch file. To achieve this, a First-In-First-Out (FIFO) buffer is created. Velocities from the received messages are continually inserted into this buffer and then the average speed is computed using the specified averaging window size.  </li>
+  <li>Node C: it implements a service server to relay information about the robot's distance from the target and its average velocity. The script collects real-time data on the robot's position and velocities through the '\robotInfo' topic, where messages are published by the client. Additionally, it retrieves target coordinates using the same service employed in Node B. To formulate its service response, the script computes the distance and the average speed. Notably, the speed calculation incorporates an averaging window, the size of which, is determined by a server parameter, set from the launch file. To achieve this, a First-In-First-Out (FIFO) buffer is created. Velocities from the received messages are continually inserted into this buffer and then the average speed is computed using the specified averaging window size.  </li>
 </ol>
 
-## Pseudocode
+## Pseudocode of client node
 ```cpp
 Import necessary libraries and namespaces
 
