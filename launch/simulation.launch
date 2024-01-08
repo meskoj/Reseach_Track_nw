@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find assignment_2_2023)/launch/assignment1.launch"/>
+    <node pkg="assignment_2_2023" type="client" name="client" output ="screen" />
+    <node pkg="assignment_2_2023" type="nodeC" name ="nodeC" />
+    	<param name="averaging_window" type ="int" value ="5"/>
+</launch>
