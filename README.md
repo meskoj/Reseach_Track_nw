@@ -94,7 +94,7 @@ int main() {
 After having start the whole simulation with the command shown above is possible to set the target from the interface that will show on the terminal. Then, it's also possible to cancel the actual target or exit.
 To retrieve the information about target is possible to open another terminal window and write:
 ```bash
-$ roslaunch assignment_2_2023 nodeB
+$ rosrun assignment_2_2023 nodeB
 ```
 Finally, to obtain the actual coordinates and average velocities it's possible to use:
 ```bash
