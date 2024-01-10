@@ -1,5 +1,5 @@
 # Research Track 1: second assignment
-This is the program for the second assignment of the course Research Track 1 at the University of Genoa.
+This is the program for the second assignment of the course Research Track 1 at the University of Genoa. Made by Marco Meschini S6273938
 
 ## Environment and goal
 
