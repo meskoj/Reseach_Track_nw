@@ -100,3 +100,7 @@ Finally, to obtain the actual coordinates and average velocities it's possible t
 ```bash
 $ rosservice call robotInfoSrv
 ```
+
+
+## Further improvments
+The robot demonstrates its capability to navigate within the environment and reach user-selected goal coordinates. However, there is an improvement that can be done. In fact, the current speed of the robot is notably slow, attributed to both a modest actual speed and the absence of an algorithm that allows the robot to reaches the goal finding the shortest path. 
