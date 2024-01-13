@@ -60,11 +60,11 @@ bool computeInfo(assignment_2_2023::robotInfoSrv::Request& req, assignment_2_202
     avg_vel_z /= vel_z_buffer.size();
 
     // Compute the speed and distance, giving them as response to the service
-    double speed = sqrt(pow(avg_vel_x, 2) + pow(avg_vel_z, 2));
     double distance = sqrt(pow(target_x - x, 2) + pow(target_y - y, 2));
 
     res.distance = distance;
-    res.speed = speed;
+    res.vel_x = avg_vel_x;
+    res.vel_z = avg_vel_z;
     return true;
 }
 
