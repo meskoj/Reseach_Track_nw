@@ -44,6 +44,8 @@ The whole program is structured in 3 nodes:
   <li>Node C: it implements a service server to relay information about the robot's distance from the target and its average velocity. The script collects real-time data on the robot's position and velocities through the '\robotInfo' topic, where messages are published by the client. Additionally, it retrieves target coordinates using the same service employed in Node B. To formulate its service response, the script computes the distance and the average speed. Notably, the speed calculation incorporates an averaging window, the size of which, is determined by a server parameter, set from the launch file. To achieve this, a First-In-First-Out (FIFO) buffer is created. Velocities from the received messages are continually inserted into this buffer and then the average speed is computed using the specified averaging window size.  </li>
 </ol>
 
+NOTE: after having done the simulation on AulaWeb (exercise 5), I realized that probably I misinterpreted the request on the second point of the assignment about the nodeB. Therefore, I added another branch _second_version_, in which nodeB is implemented as a server that retrieves the last coordinates inserted from \reaching goal\goal topic.
+
 ## Pseudocode of client node
 ```cpp
 Import necessary libraries and namespaces
