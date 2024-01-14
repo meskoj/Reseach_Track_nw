@@ -39,9 +39,9 @@ The algorithm iterates until the robot successfully reaches its goal.
 ### Action client and interface
 The whole program is structured in 3 nodes:
 <ol>
-  <li> Client: this one implements an Action client using the ActionLib library from ROS. It is used to manage the interaction between the server and the user and to send the goal to the robot. The first part implements an interface to interact with the user and decide which action to perform. The possible actions are: set the target coordinates, cancel the actual target, or exit the program. The script is also responsible to retrieve the information about the actual position and velocity of the robot from the '/odom' topic. Then, it publishes them on the topic '/actual_info', making them accessible for other nodes within the system. Finally, it implements a service to provide the last coordinates set for the target.</li>
-  <li> Node B: this script serves as a service client. When executed, it retrieves the most recent coordinates for the target from the server implemented in the Action client. Subsequently, it displays these coordinates on the screen. </li>
-  <li>Node C: it implements a service server to relay information about the robot's distance from the target and its average velocity. The script collects real-time data on the robot's position and velocities through the '\robotInfo' topic, where messages are published by the client. Additionally, it retrieves target coordinates using the same service employed in Node B. To formulate its service response, the script computes the distance and the average speed. Notably, the speed calculation incorporates an averaging window, the size of which, is determined by a server parameter, set from the launch file. To achieve this, a First-In-First-Out (FIFO) buffer is created. Velocities from the received messages are continually inserted into this buffer and then the average speed is computed using the specified averaging window size.  </li>
+  <li> Client: this one implements an Action client using the ActionLib library from ROS. It is used to manage the interaction between the server and the user and to send the goal to the robot. The first part implements an interface to interact with the user and decide which action to perform. The possible actions are: set the target coordinates, cancel the actual target, or exit the program. The script is also responsible to retrieve the information about the actual position and velocity of the robot from the '/odom' topic. Then, it publishes them on the topic '/actual_info', making them accessible for other nodes within the system.
+  <li> Node B: it subscribes to the '/reaching_goal/goal' topic, updating global variables x and y with the coordinates  received from the message. It acts as a service server, providing a service named "last_coordinates" that responds with the last set x and y coordinates.  </li>
+  <li>Node C: it implements a service server to relay information about the robot's distance from the target and its average velocity. The script collects real-time data on the robot's position and velocities through the '\robotInfo' topic, where messages are published by the client. Additionally, it retrieves target coordinates using the service implemented in Node B. To formulate its service response, the script computes the distance and the average speed. Notably, the speed calculation incorporates an averaging window, the size of which, is determined by a server parameter, set from the launch file. To achieve this, a First-In-First-Out (FIFO) buffer is created. Velocities from the received messages are continually inserted into this buffer and then the average speed is computed using the specified averaging window size.  </li>
 </ol>
 
 ## Pseudocode of client node
@@ -67,15 +67,10 @@ void OdometryCallback(msg) {
      Extract position and velocity from the '/odom' topic
 }
 
-bool setLastCoordinates(req, res) {
-     Set the response with the last x and y coordinates
-}
-
 int main() {
      Initialize the ROS node
      Subscribe to the '/odom' topic to get position and velocity
      Advertise on the 'actual_info' topic to publish robot information
-     Advertise a service 'last_coordinates' to provide last coordinates
      Wait for the action server to start
      Create a new thread to run the 'interface' function
 
@@ -94,7 +89,7 @@ int main() {
 After having start the whole simulation with the command shown above is possible to set the target from the interface that will show on the terminal. Then, it's also possible to cancel the actual target or exit.
 To retrieve the information about target is possible to open another terminal window and write:
 ```bash
-$ rosrun assignment_2_2023 nodeB
+$ rosservice call last_coodrinates
 ```
 Finally, to obtain the actual coordinates and average velocities it's possible to use:
 ```bash
