@@ -2,7 +2,6 @@
 #include <actionlib/client/simple_action_client.h>
 #include <actionlib/client/terminal_state.h>
 #include <assignment_2_2023/PlanningAction.h>
-#include <assignment_2_2023/GetCoordinates.h>
 #include <nav_msgs/Odometry.h>
 #include <assignment_2_2023/robotInfo.h>
 #include <assignment_2_2023/robotInfoSrv.h>
@@ -77,12 +76,6 @@ void OdometryCallback(const nav_msgs::Odometry::ConstPtr& msg) {
     actual_angular_z = msg->twist.twist.angular.z;
 }
 
-bool setLastCoordinates(assignment_2_2023::GetCoordinates::Request& req, assignment_2_2023::GetCoordinates::Response& res) {
-    res.x = x;
-    res.y = y;
-    return true;
-}
-
 int main(int argc, char** argv) {
 
     // Initialize the ROS node
@@ -94,9 +87,6 @@ int main(int argc, char** argv) {
 
     // Publish on the topic actual info a robotInfo msg
     ros::Publisher pub_pose = nh.advertise<assignment_2_2023::robotInfo>("actual_info", 1);
-
-    // Implement server for node B
-    ros::ServiceServer lastCoordinates = nh.advertiseService("last_coordinates", setLastCoordinates);
 
     actionlib::SimpleActionClient<assignment_2_2023::PlanningAction> ac("/reaching_goal", true);
 
