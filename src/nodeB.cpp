@@ -9,7 +9,7 @@ bool setLastCoordinates(assignment_2_2023::GetCoordinates::Request& req, assignm
     if(x == -10 and y == -10){ 
 	// The default value of -10 is arbitrarily chosen to signify that x and y have not been explicitly set yet.
 	// These values are outside the environment, so they can't cause problems to the code 
-    	ROS_ERROR("Coordinate are not yet set");
+    	ROS_ERROR("Coordinates are not yet set");
     	return false;
     	}
     else{  
