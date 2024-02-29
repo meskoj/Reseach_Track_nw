@@ -89,7 +89,7 @@ int main() {
 After having start the whole simulation with the command shown above is possible to set the target from the interface that will show on the terminal. Then, it's also possible to cancel the actual target or exit.
 To retrieve the information about target is possible to open another terminal window and write:
 ```bash
-$ rosservice call last_coodrinates
+$ rosservice call last_coordinates
 ```
 Finally, to obtain the actual coordinates and average velocities it's possible to use:
 ```bash
