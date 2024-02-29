@@ -1,0 +1,9 @@
+<map id="nodeC.cpp" name="nodeC.cpp">
+<area shape="rect" id="node1" title="Service node that retrieves information about the speed and the distance from the goal." alt="" coords="555,5,646,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,87,84,114"/>
+<area shape="rect" id="node3" title=" " alt="" coords="109,87,335,114"/>
+<area shape="rect" id="node4" title=" " alt="" coords="360,80,575,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="599,87,869,114"/>
+<area shape="rect" id="node6" title=" " alt="" coords="893,87,956,114"/>
+<area shape="rect" id="node7" title=" " alt="" coords="980,87,1043,114"/>
+</map>

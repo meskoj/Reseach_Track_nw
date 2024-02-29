@@ -1,3 +1,21 @@
+/**
+*\file nodeC.cpp
+*\brief Service node that retrieves information about the speed and the distance from the goal
+*\author Marco Meschini
+*\version 0.2
+*\date 29/02/2024
+*\details
+*
+*Subscribes to:<BR>
+*	/actual_info
+*
+*Service: <BR>
+*	last_coordinates <BR>
+*	robotInfoSrv
+*
+*Description:<Br>
+*this node implements a service server to relay information about the robot's distance from the target and its average velocity. The script collects real-time data on the robot's position and velocities through the '\robotInfo' topic, where messages are published by the client. Additionally, it retrieves target coordinates using the service implemented in Node B. To formulate its service response, the script computes the distance and the average speed. Notably, the speed calculation incorporates an averaging window, the size of which, is determined by a server parameter, set from the launch file. To achieve this, a First-In-First-Out (FIFO) buffer is created. Velocities from the received messages are continually inserted into this buffer and then the average speed is computed using the specified averaging window size.
+*/
 #include <ros/ros.h>
 #include <assignment_2_2023/robotInfo.h>
 #include <assignment_2_2023/robotInfoSrv.h>
@@ -11,6 +29,10 @@ int averaging_window;
 
 void robotInfoCallback(const assignment_2_2023::robotInfo::ConstPtr& msg)
 {
+/**
+*\brief Store information about the actual speed
+*\param robotInfo_msg
+*/
     x = msg->x;
     y = msg->y;
 
@@ -27,6 +49,12 @@ void robotInfoCallback(const assignment_2_2023::robotInfo::ConstPtr& msg)
 
 bool computeInfo(assignment_2_2023::robotInfoSrv::Request& req, assignment_2_2023::robotInfoSrv::Response& res)
 {
+/**
+*\brief Compute the actual speed and the distance from the target
+*\param robotInfoSrv_request
+*\param robotInfoSrv_response
+*\return true if there are coordinates set as target, otherwise false
+*/
     double target_x, target_y;
 
     // Retrieve the last target coordinates inserted

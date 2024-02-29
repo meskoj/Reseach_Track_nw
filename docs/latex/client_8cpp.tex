@@ -1,0 +1,113 @@
+\hypertarget{client_8cpp}{}\doxysection{client.\+cpp File Reference}
+\label{client_8cpp}\index{client.cpp@{client.cpp}}
+
+
+Client server for the simulation.  
+
+
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/simple\+\_\+action\+\_\+client.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/terminal\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$assignment\+\_\+2\+\_\+2023/\+Planning\+Action.\+h$>$}\newline
+{\ttfamily \#include $<$nav\+\_\+msgs/\+Odometry.\+h$>$}\newline
+{\ttfamily \#include $<$assignment\+\_\+2\+\_\+2023/robot\+Info.\+h$>$}\newline
+{\ttfamily \#include $<$assignment\+\_\+2\+\_\+2023/robot\+Info\+Srv.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+Include dependency graph for client.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{client_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{client_8cpp_ade64b529d481df36d56216e570ab4d08}{interface}} ()
+\item 
+void \mbox{\hyperlink{client_8cpp_afaa5fc62bcc988d7c23627d26cb1e32a}{Odometry\+Callback}} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\item 
+\mbox{\Hypertarget{client_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{client_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+int {\bfseries main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{client_8cpp_af88b946fb90d5f08b5fb740c70e98c10}\label{client_8cpp_af88b946fb90d5f08b5fb740c70e98c10}} 
+double \mbox{\hyperlink{client_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}} = -\/10
+\begin{DoxyCompactList}\small\item\em This value is assigned outside the acceptable range to trigger the while. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{client_8cpp_ab927965981178aa1fba979a37168db2a}\label{client_8cpp_ab927965981178aa1fba979a37168db2a}} 
+double \mbox{\hyperlink{client_8cpp_ab927965981178aa1fba979a37168db2a}{y}} = -\/10
+\begin{DoxyCompactList}\small\item\em This value is assigned outside the acceptable range to trigger the while. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{client_8cpp_aef71597b75543b85254ce26ae325ea6b}\label{client_8cpp_aef71597b75543b85254ce26ae325ea6b}} 
+double {\bfseries actual\+\_\+x}
+\item 
+\mbox{\Hypertarget{client_8cpp_af4bb7353a79624d6c866d11516663a49}\label{client_8cpp_af4bb7353a79624d6c866d11516663a49}} 
+double {\bfseries actual\+\_\+y}
+\item 
+\mbox{\Hypertarget{client_8cpp_ae8aa52fe8ffeeb496adf21f6682badd6}\label{client_8cpp_ae8aa52fe8ffeeb496adf21f6682badd6}} 
+double {\bfseries actual\+\_\+linear\+\_\+x}
+\item 
+\mbox{\Hypertarget{client_8cpp_a815d439926902c2b978832adab728dca}\label{client_8cpp_a815d439926902c2b978832adab728dca}} 
+double {\bfseries actual\+\_\+angular\+\_\+z}
+\item 
+\mbox{\Hypertarget{client_8cpp_af287bc8596383f162b2b900a54c7ee4a}\label{client_8cpp_af287bc8596383f162b2b900a54c7ee4a}} 
+bool {\bfseries cancel} = false
+\item 
+\mbox{\Hypertarget{client_8cpp_a9439512ed8bbf98d9ba64fee9ce3b234}\label{client_8cpp_a9439512ed8bbf98d9ba64fee9ce3b234}} 
+bool {\bfseries goal\+Sent} = true
+\item 
+\mbox{\Hypertarget{client_8cpp_ad41b3bb7df0fe4e3ca9ab0479ec38e52}\label{client_8cpp_ad41b3bb7df0fe4e3ca9ab0479ec38e52}} 
+bool {\bfseries exit\+Program} = false
+\item 
+\mbox{\Hypertarget{client_8cpp_a45b32162c2c635cd3941771c57fafe23}\label{client_8cpp_a45b32162c2c635cd3941771c57fafe23}} 
+bool {\bfseries published} = false
+\item 
+\mbox{\Hypertarget{client_8cpp_af78adf702859da303d3332b90d34e480}\label{client_8cpp_af78adf702859da303d3332b90d34e480}} 
+mutex {\bfseries data\+Mutex}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Client server for the simulation. 
+
+\begin{DoxyAuthor}{Author}
+Marco Meschini 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+29/02/2024
+\end{DoxyDate}
+Subscribes to\+:~\newline
+ /odom ~\newline
+ Publish to\+:~\newline
+ actual\+\_\+info ~\newline
+ Description\+:~\newline
+ this node implements an Action client using the Action\+Lib library from R\+OS. It is used to manage the interaction between the server and the user and to send the goal to the robot. The first part implements an interface to interact with the user and decide which action to perform. The possible actions are\+: set the target coordinates, cancel the actual target, or exit the program. The script is also responsible to retrieve the information about the actual position and velocity of the robot from the \textquotesingle{}/odom\textquotesingle{} topic. Then, it publishes them on the topic \textquotesingle{}/actual\+\_\+info\textquotesingle{}, making them accessible for other nodes within the system. Finally, it implements a service to provide the last coordinates set for the target. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client_8cpp_ade64b529d481df36d56216e570ab4d08}\label{client_8cpp_ade64b529d481df36d56216e570ab4d08}} 
+\index{client.cpp@{client.cpp}!interface@{interface}}
+\index{interface@{interface}!client.cpp@{client.cpp}}
+\doxysubsubsection{\texorpdfstring{interface()}{interface()}}
+{\footnotesize\ttfamily void interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Interface for the program
+
+This function is used to create a graphical interface for the client and provide information about the program\mbox{\Hypertarget{client_8cpp_afaa5fc62bcc988d7c23627d26cb1e32a}\label{client_8cpp_afaa5fc62bcc988d7c23627d26cb1e32a}} 
+\index{client.cpp@{client.cpp}!OdometryCallback@{OdometryCallback}}
+\index{OdometryCallback@{OdometryCallback}!client.cpp@{client.cpp}}
+\doxysubsubsection{\texorpdfstring{OdometryCallback()}{OdometryCallback()}}
+{\footnotesize\ttfamily void Odometry\+Callback (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+Get position and velocity from the msg in the /odom topic 
+\begin{DoxyParams}{Parameters}
+{\em nav\+\_\+msgs} & \\
+\hline
+\end{DoxyParams}

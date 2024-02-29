@@ -1,3 +1,19 @@
+/**
+*\file client.cpp
+*\brief Client server for the simulation
+*\author Marco Meschini
+*\version 0.2
+*\date 29/02/2024
+*\details
+*
+*Subscribes to:<BR>
+*	/odom <BR>
+*Publish to:<BR>
+*	actual_info <BR>
+*Description:<Br>
+*this node implements an Action client using the ActionLib library from ROS. It is used to manage the interaction between the server and the user and to send the goal to the robot. The first part implements an interface to interact with the user and decide which action to perform. The possible actions are: set the target coordinates, cancel the actual target, or exit the program. The script is also responsible to retrieve the information about the actual position and velocity of the robot from the '/odom' topic. Then, it publishes them on the topic '/actual_info', making them accessible for other nodes within the system. Finally, it implements a service to provide the last coordinates set for the target.
+*/
+
 #include <ros/ros.h>
 #include <actionlib/client/simple_action_client.h>
 #include <actionlib/client/terminal_state.h>
@@ -13,8 +29,8 @@
 using namespace std;
 
 // Define global variables to store the information 
-double x = -10; // These values are assigned outside the acceptable range to trigger the while
-double y = -10;
+double x = -10; ///< This value is assigned outside the acceptable range to trigger the while
+double y = -10; ///< This value is assigned outside the acceptable range to trigger the while
 double actual_x, actual_y, actual_linear_x, actual_angular_z;
 bool cancel = false;
 bool goalSent = true;
@@ -25,6 +41,11 @@ bool published = false;
 mutex dataMutex;
 
 void interface() {
+/**
+*\brief Interface for the program
+*
+*This function is used to create a graphical interface for the client and provide information about the program
+*/
     while (!exitProgram) {
         int sel;
 	ros::Duration(2.0).sleep();
@@ -69,6 +90,10 @@ void interface() {
 }
 
 void OdometryCallback(const nav_msgs::Odometry::ConstPtr& msg) {
+/**
+*\brief Get position and velocity from the msg in the /odom topic
+*\param nav_msgs
+*/
     // Get position and velocity from the msg in the /odom topic
     actual_x = msg->pose.pose.position.x;
     actual_y = msg->pose.pose.position.y;

@@ -1,0 +1,87 @@
+\hypertarget{node_b_8cpp}{}\doxysection{node\+B.\+cpp File Reference}
+\label{node_b_8cpp}\index{nodeB.cpp@{nodeB.cpp}}
+
+
+Service node to retrieves the last target sent by the user.  
+
+
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$assignment\+\_\+2\+\_\+2023/\+Get\+Coordinates.\+h$>$}\newline
+{\ttfamily \#include $<$assignment\+\_\+2\+\_\+2023/\+Planning\+Action\+Goal.\+h$>$}\newline
+Include dependency graph for node\+B.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{node_b_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{node_b_8cpp_a5c628e940e7720ae059b9442b08d72cb}{set\+Last\+Coordinates}} (assignment\+\_\+2\+\_\+2023\+::\+Get\+Coordinates\+::\+Request \&req, assignment\+\_\+2\+\_\+2023\+::\+Get\+Coordinates\+::\+Response \&res)
+\item 
+void \mbox{\hyperlink{node_b_8cpp_a599a27b1a9111ec0756733a1ca6c2199}{coordinates\+Callback}} (const assignment\+\_\+2\+\_\+2023\+::\+Planning\+Action\+Goal\+::\+Const\+Ptr \&msg)
+\item 
+\mbox{\Hypertarget{node_b_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{node_b_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+int {\bfseries main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{node_b_8cpp_af88b946fb90d5f08b5fb740c70e98c10}\label{node_b_8cpp_af88b946fb90d5f08b5fb740c70e98c10}} 
+double \mbox{\hyperlink{node_b_8cpp_af88b946fb90d5f08b5fb740c70e98c10}{x}} = -\/10
+\begin{DoxyCompactList}\small\item\em This value is assigned outside the acceptable range to trigger the while. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{node_b_8cpp_ab927965981178aa1fba979a37168db2a}\label{node_b_8cpp_ab927965981178aa1fba979a37168db2a}} 
+double \mbox{\hyperlink{node_b_8cpp_ab927965981178aa1fba979a37168db2a}{y}} = -\/10
+\begin{DoxyCompactList}\small\item\em This value is assigned outside the acceptable range to trigger the while. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Service node to retrieves the last target sent by the user. 
+
+\begin{DoxyAuthor}{Author}
+Marco Meschini 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+29/02/2024
+\end{DoxyDate}
+Subscribes to\+:~\newline
+ /reaching\+\_\+goal/goal
+
+Service\+: ~\newline
+ last\+\_\+coordinates ~\newline
+ Description\+:~\newline
+ this node serves as a service client. When executed, it retrieves the most recent coordinates for the target from the server implemented in the Action client. Subsequently, it displays these coordinates on the screen. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{node_b_8cpp_a599a27b1a9111ec0756733a1ca6c2199}\label{node_b_8cpp_a599a27b1a9111ec0756733a1ca6c2199}} 
+\index{nodeB.cpp@{nodeB.cpp}!coordinatesCallback@{coordinatesCallback}}
+\index{coordinatesCallback@{coordinatesCallback}!nodeB.cpp@{nodeB.cpp}}
+\doxysubsubsection{\texorpdfstring{coordinatesCallback()}{coordinatesCallback()}}
+{\footnotesize\ttfamily void coordinates\+Callback (\begin{DoxyParamCaption}\item[{const assignment\+\_\+2\+\_\+2023\+::\+Planning\+Action\+Goal\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+Retrieve the information about the goal using a message 
+\begin{DoxyParams}{Parameters}
+{\em goal\+\_\+msg} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{node_b_8cpp_a5c628e940e7720ae059b9442b08d72cb}\label{node_b_8cpp_a5c628e940e7720ae059b9442b08d72cb}} 
+\index{nodeB.cpp@{nodeB.cpp}!setLastCoordinates@{setLastCoordinates}}
+\index{setLastCoordinates@{setLastCoordinates}!nodeB.cpp@{nodeB.cpp}}
+\doxysubsubsection{\texorpdfstring{setLastCoordinates()}{setLastCoordinates()}}
+{\footnotesize\ttfamily bool set\+Last\+Coordinates (\begin{DoxyParamCaption}\item[{assignment\+\_\+2\+\_\+2023\+::\+Get\+Coordinates\+::\+Request \&}]{req,  }\item[{assignment\+\_\+2\+\_\+2023\+::\+Get\+Coordinates\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+This function print the information about the target coordinates 
+\begin{DoxyParams}{Parameters}
+{\em service} & request \\
+\hline
+{\em service} & response \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there is a target, otherwise false
+\end{DoxyReturn}

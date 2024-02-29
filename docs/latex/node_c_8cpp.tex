@@ -1,0 +1,101 @@
+\hypertarget{node_c_8cpp}{}\doxysection{node\+C.\+cpp File Reference}
+\label{node_c_8cpp}\index{nodeC.cpp@{nodeC.cpp}}
+
+
+Service node that retrieves information about the speed and the distance from the goal.  
+
+
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$assignment\+\_\+2\+\_\+2023/robot\+Info.\+h$>$}\newline
+{\ttfamily \#include $<$assignment\+\_\+2\+\_\+2023/robot\+Info\+Srv.\+h$>$}\newline
+{\ttfamily \#include $<$assignment\+\_\+2\+\_\+2023/\+Get\+Coordinates.\+h$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$deque$>$}\newline
+Include dependency graph for node\+C.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{node_c_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{node_c_8cpp_a666a240ccefe69681431ba7a5bf6721d}{robot\+Info\+Callback}} (const assignment\+\_\+2\+\_\+2023\+::robot\+Info\+::\+Const\+Ptr \&msg)
+\item 
+bool \mbox{\hyperlink{node_c_8cpp_a1c64f4c1ba679080c1041485f7df9fcf}{compute\+Info}} (assignment\+\_\+2\+\_\+2023\+::robot\+Info\+Srv\+::\+Request \&req, assignment\+\_\+2\+\_\+2023\+::robot\+Info\+Srv\+::\+Response \&res)
+\item 
+\mbox{\Hypertarget{node_c_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{node_c_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+int {\bfseries main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{node_c_8cpp_af88b946fb90d5f08b5fb740c70e98c10}\label{node_c_8cpp_af88b946fb90d5f08b5fb740c70e98c10}} 
+double {\bfseries x}
+\item 
+\mbox{\Hypertarget{node_c_8cpp_ab927965981178aa1fba979a37168db2a}\label{node_c_8cpp_ab927965981178aa1fba979a37168db2a}} 
+double {\bfseries y}
+\item 
+\mbox{\Hypertarget{node_c_8cpp_a9f448411506dae975d3cf75651e3b693}\label{node_c_8cpp_a9f448411506dae975d3cf75651e3b693}} 
+std\+::deque$<$ double $>$ {\bfseries vel\+\_\+x\+\_\+buffer}
+\item 
+\mbox{\Hypertarget{node_c_8cpp_a6939fc51b711fb013036cd0a54aa50ad}\label{node_c_8cpp_a6939fc51b711fb013036cd0a54aa50ad}} 
+std\+::deque$<$ double $>$ {\bfseries vel\+\_\+z\+\_\+buffer}
+\item 
+\mbox{\Hypertarget{node_c_8cpp_a9fd9c1c124a8f8d1b3dc0f3dd2b29e96}\label{node_c_8cpp_a9fd9c1c124a8f8d1b3dc0f3dd2b29e96}} 
+int {\bfseries averaging\+\_\+window}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Service node that retrieves information about the speed and the distance from the goal. 
+
+\begin{DoxyAuthor}{Author}
+Marco Meschini 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+29/02/2024
+\end{DoxyDate}
+Subscribes to\+:~\newline
+ /actual\+\_\+info
+
+Service\+: ~\newline
+ last\+\_\+coordinates ~\newline
+ robot\+Info\+Srv
+
+Description\+:~\newline
+ this node implements a service server to relay information about the robot\textquotesingle{}s distance from the target and its average velocity. The script collects real-\/time data on the robot\textquotesingle{}s position and velocities through the \textquotesingle{}\textbackslash{}robot\+Info\textquotesingle{} topic, where messages are published by the client. Additionally, it retrieves target coordinates using the service implemented in Node B. To formulate its service response, the script computes the distance and the average speed. Notably, the speed calculation incorporates an averaging window, the size of which, is determined by a server parameter, set from the launch file. To achieve this, a First-\/\+In-\/\+First-\/\+Out (F\+I\+FO) buffer is created. Velocities from the received messages are continually inserted into this buffer and then the average speed is computed using the specified averaging window size. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{node_c_8cpp_a1c64f4c1ba679080c1041485f7df9fcf}\label{node_c_8cpp_a1c64f4c1ba679080c1041485f7df9fcf}} 
+\index{nodeC.cpp@{nodeC.cpp}!computeInfo@{computeInfo}}
+\index{computeInfo@{computeInfo}!nodeC.cpp@{nodeC.cpp}}
+\doxysubsubsection{\texorpdfstring{computeInfo()}{computeInfo()}}
+{\footnotesize\ttfamily bool compute\+Info (\begin{DoxyParamCaption}\item[{assignment\+\_\+2\+\_\+2023\+::robot\+Info\+Srv\+::\+Request \&}]{req,  }\item[{assignment\+\_\+2\+\_\+2023\+::robot\+Info\+Srv\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+Compute the actual speed and the distance from the target 
+\begin{DoxyParams}{Parameters}
+{\em robot\+Info\+Srv\+\_\+request} & \\
+\hline
+{\em robot\+Info\+Srv\+\_\+response} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there are coordinates set as target, otherwise false
+\end{DoxyReturn}
+\mbox{\Hypertarget{node_c_8cpp_a666a240ccefe69681431ba7a5bf6721d}\label{node_c_8cpp_a666a240ccefe69681431ba7a5bf6721d}} 
+\index{nodeC.cpp@{nodeC.cpp}!robotInfoCallback@{robotInfoCallback}}
+\index{robotInfoCallback@{robotInfoCallback}!nodeC.cpp@{nodeC.cpp}}
+\doxysubsubsection{\texorpdfstring{robotInfoCallback()}{robotInfoCallback()}}
+{\footnotesize\ttfamily void robot\+Info\+Callback (\begin{DoxyParamCaption}\item[{const assignment\+\_\+2\+\_\+2023\+::robot\+Info\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+Store information about the actual speed 
+\begin{DoxyParams}{Parameters}
+{\em robot\+Info\+\_\+msg} & \\
+\hline
+\end{DoxyParams}
