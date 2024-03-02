@@ -10,6 +10,7 @@ The environment used in this project is a 2D simulation in Gazebo. The simulated
 </p>
 
 The objective is for the robot to reach a user-specified target point. The environment and the algorithm governing the robot's movements have already been implemented and can be referenced from the existing project [documentation](https://github.com/CarmineD8/assignment_2_2023).
+For more information check documentation at: (https://meskoj.github.io/ReseachTrack1_Second_Assignment/)
 
 ## How to run the program
 Before starting is necessary to install ROS, to do so follow the instruction on [ROS wiki](https://wiki.ros.org/ROS/Installation) (for the simulation was used the Noetic version).
