@@ -8,10 +8,12 @@
 *
 *Subscribes to:<BR>
 *	/odom <BR>
+*	/reaching_goal <BR>
 *Publish to:<BR>
 *	actual_info <BR>
-*Description:<Br>
-*this node implements an Action client using the ActionLib library from ROS. It is used to manage the interaction between the server and the user and to send the goal to the robot. The first part implements an interface to interact with the user and decide which action to perform. The possible actions are: set the target coordinates, cancel the actual target, or exit the program. The script is also responsible to retrieve the information about the actual position and velocity of the robot from the '/odom' topic. Then, it publishes them on the topic '/actual_info', making them accessible for other nodes within the system. Finally, it implements a service to provide the last coordinates set for the target.
+*Description:
+*
+This node implements an Action client utilizing the ActionLib library from ROS. Its purpose is to facilitate the communication between the server and the user, as well as to dispatch goals to the robot. The first part, establishes an interface for user interaction, enabling the user to determine which action to execute. The possible actions are: set the target coordinates, cancel the actual target, or exit the program. The script is also responsible to retrieve the information about the actual position and velocity of the robot from the '/odom' topic. Then, it publishes them on the topic '/actual_info', making them accessible for other nodes within the system. Finally, it implements a service to provide the last coordinates set for the target.
 */
 
 #include <ros/ros.h>
@@ -44,7 +46,7 @@ void interface() {
 /**
 *\brief Interface for the program
 *
-*This function is used to create a graphical interface for the client and provide information about the program
+*This function is used to create a simple graphical interface for the client and provide information about the program
 */
     while (!exitProgram) {
         int sel;

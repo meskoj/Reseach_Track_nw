@@ -11,8 +11,8 @@
 *
 *Service: <BR>
 *	last_coordinates <BR>
-*Description:<Br>
-*this node serves as a service client. When executed, it retrieves the most recent coordinates for the target from the server implemented in the Action client. Subsequently, it displays these coordinates on the screen.
+*Description:
+*This node serves as a service client. When executed, it retrieves the most recent coordinates for the target from the server implemented in the Action client. Subsequently, it displays these coordinates on the screen.
 */
 #include <ros/ros.h>
 #include <assignment_2_2023/GetCoordinates.h>

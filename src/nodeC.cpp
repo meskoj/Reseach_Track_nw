@@ -13,8 +13,8 @@
 *	last_coordinates <BR>
 *	robotInfoSrv
 *
-*Description:<Br>
-*this node implements a service server to relay information about the robot's distance from the target and its average velocity. The script collects real-time data on the robot's position and velocities through the '\robotInfo' topic, where messages are published by the client. Additionally, it retrieves target coordinates using the service implemented in Node B. To formulate its service response, the script computes the distance and the average speed. Notably, the speed calculation incorporates an averaging window, the size of which, is determined by a server parameter, set from the launch file. To achieve this, a First-In-First-Out (FIFO) buffer is created. Velocities from the received messages are continually inserted into this buffer and then the average speed is computed using the specified averaging window size.
+*Description:
+*This node implements a service server to relay information about the robot's distance from the target and its average velocity. The script collects real-time data on the robot's position and velocities through the '\robotInfo' topic, where messages are published by the client. Additionally, it retrieves target coordinates using the service implemented in Node B. To formulate its service response, the script computes the distance and the average speed. Notably, the speed calculation incorporates an averaging window, the size of which, is determined by a server parameter, set from the launch file. To achieve this, a First-In-First-Out (FIFO) buffer is created. Velocities from the received messages are continually inserted into this buffer and then the average speed is computed using the specified averaging window size.
 */
 #include <ros/ros.h>
 #include <assignment_2_2023/robotInfo.h>
@@ -97,7 +97,7 @@ bool computeInfo(assignment_2_2023::robotInfoSrv::Request& req, assignment_2_202
 }
 
 int main(int argc, char** argv)
-{
+{s
     ros::init(argc, argv, "robot_info_service");
     
     ros::NodeHandle nh;
